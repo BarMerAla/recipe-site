@@ -28,7 +28,7 @@ services:
   nginx:
     build: 
       context: ./frontend
-      dockerfile: Dockerfile
+      dockerfile: ./frontend/Dockerfile
     depends_on:
       - backend
     volumes:
