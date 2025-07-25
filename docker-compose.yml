@@ -17,8 +17,10 @@ services:
     volumes:
       - static_volume:/app/static
       - media_volume:/app/media
-    env_file:
-      - .env
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
 
   frontend:
     build: ./frontend
@@ -26,6 +28,8 @@ services:
       - backend
     ports:
       - "3000:80"       # React (через nginx) будет на 3000 (80 внутри контейнера)
+    environment:
+      - VITE_API_URL=${VITE_API_URL}
 
   nginx:
     build: 
