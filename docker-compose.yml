@@ -27,7 +27,7 @@ services:
 
   nginx:
     build: 
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile
     depends_on:
       - backend
