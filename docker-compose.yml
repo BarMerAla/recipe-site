@@ -15,6 +15,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
+      - ./backend/.env:/backend/.env
       - static_volume:/app/static
       - media_volume:/app/media
     environment:
