@@ -19,7 +19,7 @@ services:
       - static_volume:/app/static
       - media_volume:/app/media
     env_file:
-      - .env
+      - ./backend/.env
 
   frontend:
     build: ./frontend
@@ -28,7 +28,7 @@ services:
     ports:
       - "3000:80"       # React (через nginx) будет на 3000 (80 внутри контейнера)
     env_file:
-      - .env
+      - ./frontend/.env
 
   nginx:
     build: 
