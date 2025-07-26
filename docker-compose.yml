@@ -21,6 +21,8 @@ services:
       - DATABASE_URL=${DATABASE_URL}
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG=${DEBUG}
+    env_file:
+      - .env
 
   frontend:
     build: ./frontend
@@ -30,6 +32,8 @@ services:
       - "3000:80"       # React (через nginx) будет на 3000 (80 внутри контейнера)
     environment:
       - VITE_API_URL=${VITE_API_URL}
+    env_file:
+      - .env
 
   nginx:
     build: 
