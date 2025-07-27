@@ -9,13 +9,13 @@ from .views import (
     MyRecipesView, popular_recipes
 )
 from rest_framework.routers import DefaultRouter
-from django.views.decorators.cache import cache_page
+
 
 router = DefaultRouter()
 
 urlpatterns = [
     path('', views.home),
-    path('recipes/', cache_page(60*15)(RecipeListCreateView.as_view())),
+    path('recipes/', RecipeListCreateView.as_view()),
     path('recipes/<int:pk>/', RecipeRetrieveUpdateDestroyView.as_view()),
     path('recipes/<int:recipe_id>/comments/', CommentListCreateView.as_view()),
     path('comments/<int:pk>/', CommentRetrieveUpdateDestroyView.as_view()),
@@ -27,9 +27,9 @@ urlpatterns = [
     path('profile/me/', UserProfileView.as_view()),
     path('profile/update/', UserProfileUpdateView.as_view()),
     path('profile/change-password/', ChangePasswordView.as_view()),
-    path('profile/my-comments/', cache_page(60*5)(MyCommentView.as_view())), 
+    path('profile/my-comments/', MyCommentView.as_view()), 
     path('comments/<int:comment_id>/like/', toggle_like_comment, name="toggle_like_comment"), 
-    path('my-recipes/', cache_page(60/5)(MyRecipesView.as_view()), name="my-recipes"), 
+    path('my-recipes/', MyRecipesView.as_view(), name="my-recipes"), 
     path('recipes/popular/', popular_recipes),
 ]
 
